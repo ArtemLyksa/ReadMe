@@ -9,7 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        BookRow(book: Book())
+        List(Library().sortedBooks, id: \.title) { book in
+            BookRow(book: book)
+        }
+        
     }
 }
 
@@ -25,7 +28,9 @@ struct BookRow: View {
                     .font(.title3)
                     .foregroundColor(.secondary)
             }
+            .lineLimit(1)
         }
+        .padding(.vertical)
     }
 }
 

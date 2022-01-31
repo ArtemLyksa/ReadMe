@@ -13,6 +13,7 @@
 		FE0D7F6727A7DBD1007DE25E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE0D7F6627A7DBD1007DE25E /* Preview Assets.xcassets */; };
 		FE0D7F6E27A7EDB0007DE25E /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F6D27A7EDAF007DE25E /* Book.swift */; };
 		FE0D7F7127A7EE24007DE25E /* Book_views.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F7027A7EE24007DE25E /* Book_views.swift */; };
+		FE0D7F7327A80177007DE25E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F7227A80177007DE25E /* Library.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		FE0D7F6627A7DBD1007DE25E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FE0D7F6D27A7EDAF007DE25E /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		FE0D7F7027A7EE24007DE25E /* Book_views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_views.swift; sourceTree = "<group>"; };
+		FE0D7F7227A80177007DE25E /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				FE0D7F5F27A7DBD0007DE25E /* ReadMeApp.swift */,
 				FE0D7F6F27A7EE17007DE25E /* Views */,
 				FE0D7F6327A7DBD1007DE25E /* Assets.xcassets */,
+				FE0D7F7227A80177007DE25E /* Library.swift */,
 				FE0D7F6527A7DBD1007DE25E /* Preview Content */,
 				FE0D7F6D27A7EDAF007DE25E /* Book.swift */,
 			);
@@ -153,6 +156,7 @@
 			files = (
 				FE0D7F6227A7DBD0007DE25E /* ContentView.swift in Sources */,
 				FE0D7F6027A7DBD0007DE25E /* ReadMeApp.swift in Sources */,
+				FE0D7F7327A80177007DE25E /* Library.swift in Sources */,
 				FE0D7F6E27A7EDB0007DE25E /* Book.swift in Sources */,
 				FE0D7F7127A7EE24007DE25E /* Book_views.swift in Sources */,
 			);
