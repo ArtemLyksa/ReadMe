@@ -16,9 +16,11 @@ struct TitleAndAuthorStack: View {
         VStack(alignment: .leading) {
             Text(book.title)
                 .font(titleFont)
+                .accessibilityIdentifier("book_title")
             Text(book.author)
                 .font(authorFont)
                 .foregroundColor(.secondary)
+                .accessibilityIdentifier("book_author")
         }
     }
 }
