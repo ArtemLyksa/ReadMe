@@ -11,6 +11,7 @@ import class PhotosUI.PHPickerViewController
 struct DetailView: View {
     let book: Book
     @State var showImagePicker = false
+    @State var presentDialog = false
     @Binding var image: Image?
     
     var body: some View {
@@ -19,10 +20,26 @@ struct DetailView: View {
                                 titleFont: .title,
                                 authorFont: .title2)
             VStack {
-                Book.Image(image: image, title: book.title, size: nil, cornerRadius: 16)
+                
+                Book.Image(
+                    image: image,
+                    title: book.title,
+                    size: nil,
+                    cornerRadius: 16)
                     .scaledToFit()
-                Button("Update image…") {
-                    showImagePicker = true
+                
+                HStack {
+                    if image != nil {
+                        Spacer()
+                        Button("Delete image") {
+                            presentDialog = true
+                        }
+                    }
+                    Spacer()
+                    Button("Update image…") {
+                        showImagePicker = true
+                    }
+                    Spacer()
                 }
                 .padding()
             }
@@ -31,6 +48,12 @@ struct DetailView: View {
         .padding()
         .sheet(isPresented: $showImagePicker) {
             PHPickerViewController.View(image: $image)
+        }
+        .confirmationDialog("Delete image for \(book.title)",
+                            isPresented: $presentDialog) {
+            Button("Delete", role: .destructive) { image = nil }
+        } message: {
+            Text("Delete image for \(book.title)")
         }
     }
 }
