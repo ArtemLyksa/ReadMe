@@ -36,6 +36,11 @@ struct DetailView: View {
             )
             Spacer()
         }
+        .onDisappear {
+            withAnimation {
+                library.sortBooks()
+            } 
+        }
         .padding()
     }
 }

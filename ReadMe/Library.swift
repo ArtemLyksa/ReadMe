@@ -32,9 +32,17 @@
 
 import SwiftUI
 
+enum Section: CaseIterable {
+    case readMe
+    case finished
+}
+
 class Library: ObservableObject {
     
-    var sortedBooks: [Book] { booksCache }
+    var sortedBooks: [Section: [Book]] {
+        Dictionary(grouping: booksCache) { $0.readMe ? .readMe : .finished }
+    }
+    
     @Published var images: [Book: Image] = [:]
     
     /// An in-memory cache of the manually-sorted books.
@@ -51,6 +59,14 @@ class Library: ObservableObject {
         .init(title: "Drawing People", author: "Barbara Bradley"),
         .init(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
     ]
+    
+    func sortBooks() {
+        booksCache = sortedBooks
+            .sorted(by: { $1.key == .finished })
+            .flatMap { $0.value }
+        
+        objectWillChange.send()
+    }
     
     func addNew(book: Book, image: Image?) {
         booksCache.insert(book, at: 0)
