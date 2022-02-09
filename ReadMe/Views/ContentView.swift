@@ -38,6 +38,8 @@ struct ContentView: View {
                 }
                 .navigationTitle("My Library")
             }
+            .listStyle(.insetGrouped)
+            .toolbar(content: EditButton.init)
         }
         
     }
@@ -65,10 +67,6 @@ private struct BookRow: View {
                     }
                 }
                 .lineLimit(1)
-                Spacer()
-                Image(systemName: book.readMe ? "bookmark.fill" : "bookmark")
-                    .font(.system(size: 48, weight: .light))
-                    .foregroundColor(.accentColor)
             }
             .padding(.vertical)
         }
@@ -90,6 +88,34 @@ private struct SectionView: View {
             SwiftUI.Section {
                 ForEach(books) { book in
                     BookRow(book: book)
+                        .swipeActions(edge: .leading) {
+                            Button {
+                                withAnimation {
+                                    book.readMe.toggle()
+                                    library.sortBooks()
+                                }
+                            } label: {
+                                book.readMe
+                                ? Label("Finished", systemImage: "bookmark.slash")
+                                : Label("Read Me!", systemImage: "bookmark")
+                            }
+                            .tint(.accentColor)
+                        }
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                guard let index = books.firstIndex(of: book) else { return }
+                                library.deleteBooks(atOffests: .init(integer: index), section: section)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            .tint(.red)
+                        }
+                }
+                .onDelete { indexSet in
+                    library.deleteBooks(atOffests: indexSet, section: section)
+                }
+                .onMove { indexes, newOffset in
+                    library.moveBooks(oldOffsets: indexes, newOffset: newOffset, section: section)
                 }
             } header: {
                 ZStack {

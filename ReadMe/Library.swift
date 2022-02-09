@@ -40,7 +40,14 @@ enum Section: CaseIterable {
 class Library: ObservableObject {
     
     var sortedBooks: [Section: [Book]] {
-        Dictionary(grouping: booksCache) { $0.readMe ? .readMe : .finished }
+        get {
+            Dictionary(grouping: booksCache) { $0.readMe ? .readMe : .finished }
+        }
+        set {
+            booksCache = newValue
+                .sorted(by: { $1.key == .finished })
+                .flatMap(\.value)
+        }
     }
     
     @Published var images: [Book: Image] = [:]
@@ -74,5 +81,20 @@ class Library: ObservableObject {
         if let image = image {
             images[book] = image
         }
+    }
+    
+    func deleteBooks(atOffests offsets: IndexSet, section: Section) {
+        let booksBeforeDeletion = booksCache
+        sortedBooks[section]?.remove(atOffsets: offsets)
+        
+        for change in booksCache.difference(from: booksBeforeDeletion) {
+            if case .remove(_, element: let deletedBook, _) = change {
+                images[deletedBook] = nil
+            }
+        }
+    }
+    
+    func moveBooks(oldOffsets: IndexSet, newOffset: Int, section: Section) {
+        sortedBooks[section]?.move(fromOffsets: oldOffsets, toOffset: newOffset)
     }
 }
