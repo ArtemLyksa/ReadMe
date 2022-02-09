@@ -10,9 +10,7 @@ import class PhotosUI.PHPickerViewController
 
 struct DetailView: View {
     @ObservedObject var book: Book
-    @State var showImagePicker = false
-    @State var presentDialog = false
-    @Binding var image: Image?
+    @EnvironmentObject var library: Library
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -24,44 +22,71 @@ struct DetailView: View {
                         .font(.system(size: 48, weight: .light))
                 }
                 
-                TitleAndAuthorStack(book: book,
-                                    titleFont: .title,
-                                    authorFont: .title2)
+                TitleAndAuthorStack(
+                    book: book,
+                    titleFont: .title,
+                    authorFont: .title2
+                )
             }
-            Divider()
-                .padding(.vertical)
-            TextField("Write your review", text: $book.microReview)
-            Divider()
-                .padding(.vertical)
             
-            VStack {
-                
-                Book.Image(
-                    image: image,
-                    title: book.title,
-                    size: nil,
-                    cornerRadius: 16)
-                    .scaledToFit()
-                    .accessibilityIdentifier("book_image")
-                
-                HStack {
-                    if image != nil {
-                        Spacer()
-                        Button("Delete image") {
-                            presentDialog = true
-                        }
-                    }
-                    Spacer()
-                    Button("Update image…") {
-                        showImagePicker = true
-                    }
-                    Spacer()
-                }
-                .padding()
-            }
+            ReviewAndImageView(
+                book: book,
+                image: $library.images[book],
+                reviewPlaceholder: "Write your review"
+            )
             Spacer()
         }
         .padding()
+    }
+}
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(book: .init())
+            .environmentObject(Library())
+            .previewedInAllColorSchemes
+    }
+}
+
+struct ReviewAndImageView: View {
+    @ObservedObject var book: Book
+    @Binding var image: Image?
+    @State var presentDialog = false
+    @State var showImagePicker = false
+    var reviewPlaceholder = "Review"
+    
+    var body: some View {
+        VStack {
+            
+            Divider()
+                .padding(.vertical)
+            TextField(reviewPlaceholder, text: $book.microReview)
+            Divider()
+                .padding(.vertical)
+            
+            Book.Image(
+                image: image,
+                title: book.title,
+                size: nil,
+                cornerRadius: 16)
+                .scaledToFit()
+                .accessibilityIdentifier("book_image")
+            
+            HStack {
+                if image != nil {
+                    Spacer()
+                    Button("Delete image") {
+                        presentDialog = true
+                    }
+                }
+                Spacer()
+                Button("Update image…") {
+                    showImagePicker = true
+                }
+                Spacer()
+            }
+            .padding()
+        }
         .sheet(isPresented: $showImagePicker) {
             PHPickerViewController.View(image: $image)
         }
@@ -74,9 +99,9 @@ struct DetailView: View {
     }
 }
 
-struct DetailView_Previews: PreviewProvider {
+struct ReviewAndImageView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        DetailView(book: .init(), image: .constant(nil))
-            .previewedInAllColorSchemes
+        ReviewAndImageView(book: .init(), image: .constant(nil))
     }
 }

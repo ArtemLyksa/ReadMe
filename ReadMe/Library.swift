@@ -32,11 +32,13 @@
 
 import SwiftUI
 
-struct Library {
+class Library: ObservableObject {
+    
     var sortedBooks: [Book] { booksCache }
-    var images: [Book: Image] = [:]
+    @Published var images: [Book: Image] = [:]
+    
     /// An in-memory cache of the manually-sorted books.
-    private var booksCache: [Book] = [
+    @Published private var booksCache: [Book] = [
         .init(title: "Ein Neues Land", author: "Shaun Tan", microReview: "Delightful"),
         .init(title: "Bosch", author: "Laurinda Dixon"),
         .init(title: "Dare to Lead", author: "Brené Brown"),
@@ -49,4 +51,12 @@ struct Library {
         .init(title: "Drawing People", author: "Barbara Bradley"),
         .init(title: "What to Say When You Talk to Yourself", author: "Shad Helmstetter")
     ]
+    
+    func addNew(book: Book, image: Image?) {
+        booksCache.insert(book, at: 0)
+        
+        if let image = image {
+            images[book] = image
+        }
+    }
 }

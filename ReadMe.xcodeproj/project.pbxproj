@@ -15,6 +15,7 @@
 		FE0D7F7127A7EE24007DE25E /* Book_views.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F7027A7EE24007DE25E /* Book_views.swift */; };
 		FE0D7F7327A80177007DE25E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F7227A80177007DE25E /* Library.swift */; };
 		FE0D7F7527A802CD007DE25E /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0D7F7427A802CD007DE25E /* DetailView.swift */; };
+		FE30F1BD27B2936B002CB2AB /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30F1BC27B2936B002CB2AB /* AddBookView.swift */; };
 		FE814F8427A9655D00561C2A /* PHPickerViewController.View.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE814F8327A9655D00561C2A /* PHPickerViewController.View.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		FE0D7F7027A7EE24007DE25E /* Book_views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book_views.swift; sourceTree = "<group>"; };
 		FE0D7F7227A80177007DE25E /* Library.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		FE0D7F7427A802CD007DE25E /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		FE30F1BC27B2936B002CB2AB /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		FE814F8327A9655D00561C2A /* PHPickerViewController.View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPickerViewController.View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +88,7 @@
 				FE0D7F6127A7DBD0007DE25E /* ContentView.swift */,
 				FE0D7F7027A7EE24007DE25E /* Book_views.swift */,
 				FE0D7F7427A802CD007DE25E /* DetailView.swift */,
+				FE30F1BC27B2936B002CB2AB /* AddBookView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -163,6 +166,7 @@
 				FE0D7F6227A7DBD0007DE25E /* ContentView.swift in Sources */,
 				FE0D7F7527A802CD007DE25E /* DetailView.swift in Sources */,
 				FE0D7F6027A7DBD0007DE25E /* ReadMeApp.swift in Sources */,
+				FE30F1BD27B2936B002CB2AB /* AddBookView.swift in Sources */,
 				FE0D7F7327A80177007DE25E /* Library.swift in Sources */,
 				FE814F8427A9655D00561C2A /* PHPickerViewController.View.swift in Sources */,
 				FE0D7F6E27A7EDB0007DE25E /* Book.swift in Sources */,
